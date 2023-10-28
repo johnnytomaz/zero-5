@@ -27,4 +27,7 @@ git clone git@github.com:johnnytomaz/zero-5.git
 ```powershell
 
 cd zero-5/backend
+
+npm install 
 ```
+
