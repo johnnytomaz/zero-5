@@ -10,10 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fk_Produto_ID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Produtos', key: 'id' },
+        onDelete: 'CASCADE'
       },
       fk_Categoria_ID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Categoria', key: 'id' },
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

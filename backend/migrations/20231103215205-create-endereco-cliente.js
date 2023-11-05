@@ -16,7 +16,10 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       fk_Endereco_ID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Enderecos', key: 'id' },
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

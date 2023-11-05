@@ -16,7 +16,10 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       fk_Cliente_ID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Clientes', key: 'id' },
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
