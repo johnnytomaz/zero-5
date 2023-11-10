@@ -31,3 +31,15 @@ cd zero-5/backend
 npm install 
 ```
 
+### 2.2 Configure as views
+Aqui estão as views necessárias para o projeto
+```sql
+
+create view endereco_cliente as 
+select ec.id, ec.fk_Cliente_ID, c.nome, c.email, c.telefone, c.apelido, c.senha, ec.fk_Endereco_ID, e.cep, e.ruaOuAvenida, e.numero, e.complemento from enderecoclientes as ec 
+inner join clientes as c on c.id = ec.fk_Cliente_ID
+inner join enderecos as e on e.id = ec.fk_Endereco_ID;
+```
+
+
+
