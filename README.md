@@ -39,7 +39,14 @@ create view endereco_cliente as
 select ec.id, ec.fk_Cliente_ID, c.nome, c.email, c.telefone, c.apelido, c.senha, ec.fk_Endereco_ID, e.cep, e.ruaOuAvenida, e.numero, e.complemento from enderecoclientes as ec 
 inner join clientes as c on c.id = ec.fk_Cliente_ID
 inner join enderecos as e on e.id = ec.fk_Endereco_ID;
+
+create view produto_do_cliente as 
+select pc.id, ca.fk_Cliente_ID, c.email, c.telefone, c.apelido, c.senha, pc.fk_Produto_ID, p.nome, p.descricao, p.preco, p.tamanho, p.imagens, p.origem, pc.fk_Carrinho_ID, ca.quantidade, ca.valorTotal from produtosdoclientes as pc
+inner join carrinhos as ca on ca.id = pc.fk_Carrinho_ID
+inner join clientes as c on c.id = ca.fk_Cliente_ID
+inner join produtos as p on p.id = pc.fk_Produto_ID;
 ```
+
 
 
 

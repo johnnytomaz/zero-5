@@ -2,9 +2,9 @@
 
 npx sequelize-cli model:generate --name Endereco --attributes cep:INTEGER,ruaOuAvenida:STRING,numero:INTEGER,complemento:STRING
 
-npx sequelize-cli model:generate --name Cliente --attributes nome:STRING,email:STRING,telefone:INTEGER,apelido:STRING,senha:STRING
+npx sequelize-cli model:generate --name Cliente --attributes nomeCliente:STRING,email:STRING,telefone:INTEGER,apelido:STRING,senha:STRING
 
-npx sequelize-cli model:generate --name Produto --attributes nome:STRING,descricao:STRING,preco:FLOAT,tamanho:INTEGER,imagens:STRING,origem:STRING
+npx sequelize-cli model:generate --name Produto --attributes nomeProduto:STRING,descricao:STRING,preco:FLOAT,tamanho:INTEGER,imagens:STRING,origem:STRING
 
 npx sequelize-cli model:generate --name NotasDeFragrancia --attributes nome:STRING,descricao:STRING
 
