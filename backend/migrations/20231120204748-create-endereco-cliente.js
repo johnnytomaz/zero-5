@@ -2,25 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ProdutosDoClientes', {
+    await queryInterface.createTable('EnderecoClientes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fk_Produto_ID: {
+      fk_Cliente_ID: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Produtos', key: 'id' },
-        onDelete: 'CASCADE'
-      },
-      fk_Carrinho_ID: {
+        references: { model: 'Clientes', key: 'id' },
+        onDelete: 'CASCADE'      },
+      fk_Endereco_ID: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Carrinhos', key: 'id' },
-        onDelete: 'CASCADE'
-      },
+        references: { model: 'Enderecos', key: 'id' },
+        onDelete: 'CASCADE'      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -32,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ProdutosDoClientes');
+    await queryInterface.dropTable('EnderecoClientes');
   }
 };

@@ -3,8 +3,8 @@ const Cliente = require('../models').Cliente;
 //Cadastra cliente (POST)
 const add = async (req, res) => {
     try {
-    const { nome, email, telefone, apelido, senha } = req.body;
-    const newEdit = await Cliente.create({ nome, email, telefone, apelido, senha });
+    const { nomeCliente, email, telefone, apelido, senha } = req.body;
+    const newEdit = await Cliente.create({ nomeCliente, email, telefone, apelido, senha });
     res.status(200).json({ message: 'Cadastrado com sucesso' });
     }catch(error){
         res.status(500).json({ message: 'Erro ao cadastrar', error });
@@ -23,9 +23,9 @@ const all = async (req, res) => {
 //Altera os clientes (PUT)
 const update = async (req, res) => {
     try{
-    const { nome, email, telefone, apelido, senha } = req.body;
+    const { nomeCliente, email, telefone, apelido, senha } = req.body;
     await Cliente.update(
-        { nome, email, telefone, apelido, senha },
+        { nomeCliente, email, telefone, apelido, senha },
         {
             where: { id: req.params.id },
         }

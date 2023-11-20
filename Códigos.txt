@@ -33,3 +33,21 @@ BEGIN
 	UPDATE carrinhos as c, produtosdoclientes as pc, produtos as p SET c.valorTotal = c.valorTotal + pc.preco
 WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID;
 
+CREATE TRIGGER Tgr_valorTotal_Insert AFTER INSERT
+ON produtosdoclientes
+FOR EACH ROW
+BEGIN
+	UPDATE carrinhos as c, produtosdoclientes as pc, produtos as p SET c.valorTotal = c.valorTotal + pc.preco
+WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID;
+
+CREATE TRIGGER Tgr_valorTotal_Delete AFTER DELETE
+ON produtosdoclientes
+FOR EACH ROW
+BEGIN
+	UPDATE carrinhos as c, produtos as p SET c.valorTotal = c.valorTotal - OLD.p.preco
+WHERE c.id = OLD.fk_Carrinho_ID and p.id = OLD.fk_Produto_ID;
+END$
+DELIMITER ;
+
+npx sequelize db:migrate
+

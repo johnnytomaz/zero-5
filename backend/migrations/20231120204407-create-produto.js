@@ -2,24 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('FlagranciaDoPerfumes', {
+    await queryInterface.createTable('Produtos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fk_Produto_ID: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Produtos', key: 'id' },
-        onDelete: 'CASCADE'
+      nomeProduto: {
+        type: Sequelize.STRING
       },
-      fk_NotasDeFragrancia_ID: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'NotasDeFragrancia', key: 'id' },
-        onDelete: 'CASCADE'
+      descricao: {
+        type: Sequelize.STRING
+      },
+      preco: {
+        type: Sequelize.FLOAT
+      },
+      tamanho: {
+        type: Sequelize.INTEGER
+      },
+      imagens: {
+        type: Sequelize.STRING
+      },
+      origem: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('FlagranciaDoPerfumes');
+    await queryInterface.dropTable('Produtos');
   }
 };

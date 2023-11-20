@@ -13,8 +13,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       fk_Pedido_ID: {
-        type: Sequelize.INTEGER
-      },
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Pedidos', key: 'id' },
+        onDelete: 'CASCADE'      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

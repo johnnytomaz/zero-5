@@ -19,8 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'Clientes', key: 'id' },
-        onDelete: 'CASCADE'
-      },
+        onDelete: 'CASCADE'      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

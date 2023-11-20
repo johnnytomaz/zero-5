@@ -1,6 +1,6 @@
 //pegamos a entidade em si dessa forma usando .Autor
 const Endereco = require('../models').Endereco;
-const Cliente = require('../models').Cliente;
+// const Cliente = require('../models').Cliente;
 const EnderecoCliente = require('../models').EnderecoCliente;
 
 

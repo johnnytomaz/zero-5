@@ -55,7 +55,7 @@ router.delete('/ingredientes/:id', ingredientes.del);
 const carrinho = require('./controllers/carrinhoController.js');
 //métodos http ou rotas do categoria
 router.post('/carrinho/add/:id', carrinho.add);
-router.get('/carrinho/all', carrinho.all);
+router.get('/carrinho/allByCliente/:id', carrinho.allByCliente);
 router.put('/carrinho/:id', carrinho.update);
 router.delete('/carrinho/:id', carrinho.del);
 

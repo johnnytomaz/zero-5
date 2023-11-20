@@ -16,13 +16,13 @@ npx sequelize-cli model:generate --name Ingredientes --attributes nome:STRING
 
 npx sequelize-cli model:generate --name EnderecoCliente --attributes fk_Cliente_ID:INTEGER,fk_Endereco_ID:INTEGER
 
-npx sequelize-cli model:generate --name Vendido --attributes formaDePagamento:STRING,fk_Pedido_ID:INTEGER
+npx sequelize-cli model:generate --name Carrinho --attributes quantidade:INTEGER,valorTotal:FLOAT,fk_Cliente_ID:INTEGER
 
 npx sequelize-cli model:generate --name Pedido --attributes codigoPedido:INTEGER,fk_Carrinho_ID:INTEGER
 
-npx sequelize-cli model:generate --name Estoque --attributes quantidade:INTEGER,fk_Produto_ID:INTEGER
+npx sequelize-cli model:generate --name Vendido --attributes formaDePagamento:STRING,fk_Pedido_ID:INTEGER
 
-npx sequelize-cli model:generate --name Carrinho --attributes quantidade:INTEGER,valorTotal:FLOAT,fk_Cliente_ID:INTEGER
+npx sequelize-cli model:generate --name Estoque --attributes quantidade:INTEGER,fk_Produto_ID:INTEGER
 
 npx sequelize-cli model:generate --name ProdutosDoCliente --attributes fk_Produto_ID:INTEGER,fk_Carrinho_ID:INTEGER
 

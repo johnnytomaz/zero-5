@@ -20,14 +20,22 @@ const add = async (req, res) => {
     }
 
 };
+
 //buscar todos os endereços
-const all = async (req, res) => {
+const allByCliente = async (req, res) => {
     try {
-        const carrinhos = await Carrinho.findAll();
-        res.status(200).json(carrinhos);
+        const { id } = req.params; // Este é o id do Usuário
+        const produtosDoClientes = await Carrinho.sequelize.query(
+            `SELECT * FROM produto_do_cliente WHERE fk_Cliente_ID = :id`,
+            {
+                type: Carrinho.sequelize.QueryTypes.SELECT,
+                replacements: { id },
+            });
+        res.status(200).json(produtosDoClientes);
     } catch (error) {
         res.status(500).json({ message: 'Erro ao cadastrar', error });
     }
+    
 };
 //Altera os enderecos (PUT)
 const update = async (req, res) => {
@@ -77,7 +85,7 @@ const del = async (req, res) => {
 // };
 
 module.exports = {
-    all,
+    allByCliente,
     add,
     update,
     del
