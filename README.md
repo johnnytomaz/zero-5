@@ -55,15 +55,18 @@ Aqui estão as views necessárias para o projeto
 
 use zero5;
 
+DROP TRIGGER Tgr_valorTotal_Insert;
+DROP TRIGGER Tgr_valorTotal_Update;
+DROP TRIGGER Tgr_valorTotal_Delete;
 DELIMITER $
 CREATE TRIGGER Tgr_valorTotal_Insert AFTER INSERT
 ON produtosdoclientes
 FOR EACH ROW
 BEGIN
-	UPDATE carrinhos as c, produtos as p SET c.valorTotal = c.valorTotal + p.preco
-WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID;
-	UPDATE carrinhos as c, produtos as p SET c.quantidade = c.quantidade + 1
-    WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID;
+	UPDATE carrinhos as c, produtos as p, clientes as cl SET c.valorTotal = c.valorTotal + p.preco
+    WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID and cl.id = c.fk_Cliente_ID;
+	UPDATE carrinhos as c, produtos as p, clientes as cl SET c.quantidade = c.quantidade + 1
+    WHERE c.id = NEW.fk_Carrinho_ID and p.id = NEW.fk_Produto_ID and cl.id = c.fk_Cliente_ID;
 END$
 
 CREATE TRIGGER Tgr_valorTotal_Update AFTER UPDATE
