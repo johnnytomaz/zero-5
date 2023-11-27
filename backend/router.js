@@ -38,10 +38,12 @@ router.delete('/notasDeFragrancia/:id', notasDeFragrancia.del);
 //importações
 const categoria = require('./controllers/categoriaController.js');
 //métodos http ou rotas do categoria
-router.post('/categoria/add', categoria.add);
+router.post('/categoria-produto/add/:id', categoria.add); //necessita do parametro o id do produto
 router.get('/categoria/all', categoria.all);
+router.get('/categoria-produto/:id', categoria.categoriaByProduto);
 router.put('/categoria/:id', categoria.update);
 router.delete('/categoria/:id', categoria.del);
+
 
 //importações
 const ingredientes = require('./controllers/ingredientesController.js');

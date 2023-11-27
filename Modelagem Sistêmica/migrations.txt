@@ -4,11 +4,11 @@ npx sequelize-cli model:generate --name Endereco --attributes cep:INTEGER,ruaOuA
 
 npx sequelize-cli model:generate --name Cliente --attributes nomeCliente:STRING,email:STRING,telefone:INTEGER,apelido:STRING,senha:STRING
 
-npx sequelize-cli model:generate --name Produto --attributes nomeProduto:STRING,descricao:STRING,preco:FLOAT,tamanho:INTEGER,imagens:STRING,origem:STRING
+npx sequelize-cli model:generate --name Produto --attributes nomeProduto:STRING,descricaoProduto:STRING,preco:FLOAT,tamanho:INTEGER,imagens:STRING,origem:STRING
 
 npx sequelize-cli model:generate --name NotasDeFragrancia --attributes nome:STRING,descricao:STRING
 
-npx sequelize-cli model:generate --name Categoria --attributes nome:STRING,descricao:STRING
+npx sequelize-cli model:generate --name Categoria --attributes nomeCategoria:STRING,descricaoCategoria:STRING
 
 npx sequelize-cli model:generate --name Ingredientes --attributes nome:STRING
 
@@ -16,13 +16,15 @@ npx sequelize-cli model:generate --name Ingredientes --attributes nome:STRING
 
 npx sequelize-cli model:generate --name EnderecoCliente --attributes fk_Cliente_ID:INTEGER,fk_Endereco_ID:INTEGER
 
-npx sequelize-cli model:generate --name Carrinho --attributes quantidade:INTEGER,valorTotal:FLOAT,fk_Cliente_ID:INTEGER
-
 npx sequelize-cli model:generate --name Pedido --attributes codigoPedido:INTEGER,fk_Carrinho_ID:INTEGER
 
 npx sequelize-cli model:generate --name Vendido --attributes formaDePagamento:STRING,fk_Pedido_ID:INTEGER
 
+
+
 npx sequelize-cli model:generate --name Estoque --attributes quantidade:INTEGER,fk_Produto_ID:INTEGER
+
+npx sequelize-cli model:generate --name Carrinho --attributes quantidade:INTEGER,valorTotal:FLOAT,fk_Cliente_ID:INTEGER
 
 npx sequelize-cli model:generate --name ProdutosDoCliente --attributes fk_Produto_ID:INTEGER,fk_Carrinho_ID:INTEGER
 
@@ -45,3 +47,11 @@ onDelete: 'CASCADE'
 
 
 Powershell: npx sequelize db:migrate
+
+
+Corrigir a categoria e o nome nas migrations
+
+Delete, apagar também a categoria de produto
+melhor criar dois endpoints, criar um delete só pra categoria de produto
+
+
