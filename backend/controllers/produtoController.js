@@ -3,8 +3,8 @@ const Produto = require('../models').Produto;
 //Cadastra produto (POST)
 const add = async (req, res) => {
     try {
-    const { nomeProduto, descricao, preco, tamanho, imagens, origem } = req.body;
-    const newEdit = await Produto.create({ nomeProduto, descricao, preco, tamanho, imagens, origem });
+    const { nomeProduto, descricaoProduto, preco, tamanhoProduto, imagensProduto, origem } = req.body;
+    const newEdit = await Produto.create({ nomeProduto, descricaoProduto, preco, tamanhoProduto, imagensProduto, origem });
     res.status(200).json({ message: 'Cadastrado com sucesso' });
     }catch(error){
         res.status(500).json({ message: 'Erro ao cadastrar', error });
@@ -23,9 +23,9 @@ const all = async (req, res) => {
 //Altera os clientes (PUT)
 const update = async (req, res) => {
     try{
-    const { nomeProduto, descricao, preco, tamanho, imagens, origem } = req.body;
+    const { nomeProduto, descricaoProduto, preco, tamanhoProduto, imagensProduto, origem } = req.body;
     await Produto.update(
-        { nomeProduto, descricao, preco, tamanho, imagens, origem },
+        { nomeProduto, descricaoProduto, preco, tamanhoProduto, imagensProduto, origem },
         {
             where: { id: req.params.id },
         }

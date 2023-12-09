@@ -31,6 +31,7 @@ module.exports = router;
 const notasDeFragrancia = require('./controllers/notasDeFragranciaController.js');
 //métodos http ou rotas do notasDeFragrancia
 router.post('/notasDeFragrancia/add', notasDeFragrancia.add);
+router.post('/fragranciaDoPerfume/add/:id', notasDeFragrancia.addFragranciaProduto);
 router.get('/notasDeFragrancia/all', notasDeFragrancia.all);
 router.put('/notasDeFragrancia/:id', notasDeFragrancia.update);
 router.delete('/notasDeFragrancia/:id', notasDeFragrancia.del);
@@ -43,6 +44,7 @@ router.get('/categoria/all', categoria.all);
 router.get('/categoria-produto/:id', categoria.categoriaByProduto);
 router.put('/categoria/:id', categoria.update);
 router.delete('/categoria/:id', categoria.del);
+router.delete('/categoria-produto/:id', categoria.delCategoriaProduto);
 
 
 //importações

@@ -43,10 +43,15 @@ inner join clientes as c on c.id = ec.fk_Cliente_ID
 inner join enderecos as e on e.id = ec.fk_Endereco_ID;
 
 create view produto_do_cliente as 
-select pc.id, ca.fk_Cliente_ID, c.nomeCliente, c.email, c.telefone, c.apelido, c.senha, pc.fk_Produto_ID, p.nomeProduto, p.descricao, p.preco, p.tamanho, p.imagens, p.origem, pc.fk_Carrinho_ID, ca.quantidade, ca.valorTotal from produtosdoclientes as pc
+select pc.id, ca.fk_Cliente_ID, c.nomeCliente, c.email, c.telefone, c.apelido, c.senha, pc.fk_Produto_ID, p.nomeProduto, p.descricaoProduto, p.preco, p.tamanhoProduto, p.imagensProduto, p.origem, pc.fk_Carrinho_ID, ca.quantidade, ca.valorTotal from produtosdoclientes as pc
 inner join carrinhos as ca on ca.id = pc.fk_Carrinho_ID
 inner join clientes as c on c.id = ca.fk_Cliente_ID
 inner join produtos as p on p.id = pc.fk_Produto_ID;
+
+create view categoria_produto as 
+select cp.id, cp.fk_Produto_ID, p.nomeProduto, p.descricaoProduto, p.preco, p.tamanhoProduto, p.imagensProduto, p.origem, cp.fk_Categoria_ID, c.nomeCategoria, c.descricaoCategoria  from categoriadeprodutos as cp 
+inner join categoria as c on c.id = cp.fk_Categoria_ID
+inner join produtos as p on p.id = cp.fk_Produto_ID;
 ```
 
 ### 2.3 Configure as triggers

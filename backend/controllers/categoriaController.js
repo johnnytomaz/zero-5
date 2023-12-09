@@ -9,8 +9,8 @@ const Produto = require('../models').Produto;
 const add = async (req, res) => {
     try {
         const { id } = req.params; // Este é o id do Produto
-        const { nome, descricao } = req.body;
-        const categ = await Categoria.create({ nome, descricao });
+        const { nomeCategoria, descricaoCategoria } = req.body;
+        const categ = await Categoria.create({ nomeCategoria, descricaoCategoria });
         const idCategoria = categ.id;
         const categoriaDeProduto = await CategoriaDeProduto.create({ fk_Produto_ID: id, fk_Categoria_ID: idCategoria });
         res.status(200).json({ message: 'Cadastrado com sucesso', categoriaDeProduto });
@@ -31,9 +31,9 @@ const all = async (req, res) => {
 //Altera os clientes (PUT)
 const update = async (req, res) => {
     try {
-        const { nome, descricao } = req.body;
+        const { nomeCategoria, descricaoCategoria } = req.body;
         await Categoria.update(
-            { nome, descricao },
+            { nomeCategoria, descricaoCategoria },
             {
                 where: { id: req.params.id },
             }
@@ -47,6 +47,20 @@ const update = async (req, res) => {
 const del = async (req, res) => {
     try {
         await Categoria.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ message: 'Excluído com sucesso' })
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao cadastrar', error });
+    }
+};
+
+//Deleta categoria produto por id (DELETE)
+const delCategoriaProduto = async (req, res) => {
+    try {
+        await CategoriaDeProduto.destroy({
             where: {
                 id: req.params.id,
             },
@@ -77,5 +91,6 @@ module.exports = {
     add,
     update,
     del,
-    categoriaByProduto
+    categoriaByProduto,
+    delCategoriaProduto
 };

@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   NotasDeFragrancia.init({
-    nome: DataTypes.STRING,
-    descricao: DataTypes.STRING
+    nomeFragrancia: DataTypes.STRING,
+    descricaoFragrancia: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'NotasDeFragrancia',
