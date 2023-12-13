@@ -52,6 +52,11 @@ create view categoria_produto as
 select cp.id, cp.fk_Produto_ID, p.nomeProduto, p.descricaoProduto, p.preco, p.tamanhoProduto, p.imagensProduto, p.origem, cp.fk_Categoria_ID, c.nomeCategoria, c.descricaoCategoria  from categoriadeprodutos as cp 
 inner join categoria as c on c.id = cp.fk_Categoria_ID
 inner join produtos as p on p.id = cp.fk_Produto_ID;
+
+create view fragrancia_produto as 
+select fp.id, fp.fk_Produto_ID, p.nomeProduto, p.descricaoProduto, p.preco, p.tamanhoProduto, p.imagensProduto, p.origem, fp.fk_NotasDeFragrancia_ID, n.nomeFragrancia, n.descricaoFragrancia from fragranciadoperfumes as fp 
+inner join notasdefragrancia as n on n.id = fp.fk_NotasDeFragrancia_ID
+inner join produtos as p on p.id = fp.fk_Produto_ID;
 ```
 
 ### 2.3 Configure as triggers
