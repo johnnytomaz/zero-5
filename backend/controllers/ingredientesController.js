@@ -1,5 +1,8 @@
 //pegamos a entidade em si dessa forma usando .Autor
 const Ingredientes = require('../models').Ingredientes;
+const IngredienteDoProduto = require('../models').IngredienteDoProduto;
+
+
 //Cadastra ingredientes (POST)
 const add = async (req, res) => {
     try {
@@ -11,6 +14,19 @@ const add = async (req, res) => {
     }
 
 };
+
+const addIngredientesProduto = async (req, res) => {
+    try {
+        const { id } = req.params; // Este é o id do Produto
+        const { fk_Ingredientes_ID } = req.body;
+        const ingredientesDoProduto = await IngredienteDoProduto.create({ fk_Produto_ID: id, fk_Ingredientes_ID });
+        res.status(200).json({ message: 'Cadastrado com sucesso', ingredientesDoProduto });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao cadastrar', error });
+    }
+
+};
+
 //buscar todos os ingredientes
 const all = async (req, res) => {
     try{
@@ -50,6 +66,7 @@ const del = async (req, res) => {
 module.exports = {
     all,
     add,
+    addIngredientesProduto,
     update,
     del
 };

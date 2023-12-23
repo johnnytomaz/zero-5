@@ -26,6 +26,22 @@ const addFragranciaProduto = async (req, res) => {
     }
 
 };
+
+const allFragranciaProduto = async (req, res) => {
+    try {
+        const { id } = req.params; // Este é o id do Usuário
+        const fragranciaDoPerfume = await FragranciaDoPerfume.sequelize.query(
+            `SELECT * FROM fragrancia_produto WHERE fk_Produto_ID = :id`,
+            {
+                type: FragranciaDoPerfume.sequelize.QueryTypes.SELECT,
+                replacements: { id },
+            });
+        res.status(200).json(fragranciaDoPerfume);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao cadastrar', error });
+    }
+};
+
 //buscar todos as notas de fragrancia
 const all = async (req, res) => {
     try {
@@ -59,14 +75,30 @@ const del = async (req, res) => {
             },
         });
         res.status(200).json({ message: 'Excluído com sucesso' })
+    } catch  (error) {
+        res.status(500).json({ message: 'Erro ao cadastrar', error });
+    }
+};
+
+const delFragranciaProduto = async (req, res) => {
+    try {
+        await FragranciaDoPerfume.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ message: 'Excluído com sucesso' })
     } catch (error) {
         res.status(500).json({ message: 'Erro ao cadastrar', error });
     }
 };
+
 module.exports = {
     all,
     add,
     addFragranciaProduto,
+    allFragranciaProduto,
     update,
-    del
+    del,
+    delFragranciaProduto
 };
