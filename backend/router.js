@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 //importações
  const endereco = require('./controllers/enderecoController.js');
+const uploadImage = require('./middleware/uploadImage.js')
 
  //métodos http ou rotas do endereço
  router.post('/endereco/add/:id', endereco.add);
@@ -25,7 +26,8 @@ const router = express.Router();
  router.get('/produto/all', produto.all);
  router.put('/produto/:id', produto.update);
  router.delete('/produto/:id', produto.del);
-module.exports = router;
+ router.post('/uploadImage', uploadImage.single('imagem'), produto.uploadImage);
+
 
 //importações
 const notasDeFragrancia = require('./controllers/notasDeFragranciaController.js');
